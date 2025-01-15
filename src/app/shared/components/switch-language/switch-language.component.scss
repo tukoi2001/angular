@@ -1,0 +1,58 @@
+.switch-language {
+  position: fixed;
+  top: 10px;
+  right: 80px;
+  width: 100px;
+  background: var(--background-primary);
+  padding: 8px 0;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+}
+
+.switch-language-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  &__flag {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+
+  &__lang {
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    color: var(--primary-color);
+  }
+}
+
+.switch-language-item {
+  padding: 8px;
+
+  ::ng-deep {
+    .ant-menu-title-content {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+
+  &__flag {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+
+  &__lang {
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--secondary-color);
+  }
+}

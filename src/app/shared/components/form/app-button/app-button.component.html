@@ -1,0 +1,18 @@
+<button
+  nz-button
+  [type]="htmlType"
+  [nzType]="type"
+  [nzSize]="size"
+  [nzShape]="shape"
+  [nzDanger]="danger"
+  [nzGhost]="ghost"
+  [nzBlock]="isFullWidth"
+  [nzLoading]="loading"
+  [disabled]="disabled"
+  (click)="onClick.emit($event)"
+>
+  @if (icon) {
+    <span nz-icon [nzType]="icon"></span>
+  }
+  <ng-content></ng-content>
+</button>

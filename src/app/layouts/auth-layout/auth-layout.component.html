@@ -1,0 +1,21 @@
+<div class="auth-layout">
+  <switch-language />
+  <switch-theme />
+  <div class="auth-layout-box">
+    <div class="auth-layout-box__image">
+      <img src="/assets/images/logo.png" alt="app-logo" />
+    </div>
+    <div class="auth-layout-header">
+      <h2 class="auth-layout-header__title">{{ title | translate }}</h2>
+      <p class="auth-layout-header__description">
+        {{ subtitle | translate }}
+      </p>
+    </div>
+    <div class="auth-layout-content">
+      <ng-content></ng-content>
+    </div>
+    <div class="auth-layout-footer">
+      <ng-content select="[footer]"></ng-content>
+    </div>
+  </div>
+</div>

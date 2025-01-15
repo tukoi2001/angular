@@ -36,7 +36,9 @@
             ],
             "styles": [
               "src/theme.less",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/styles/variables.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },

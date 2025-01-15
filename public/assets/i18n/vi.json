@@ -1,0 +1,23 @@
+{
+  "get_started": "Bắt đầu ngay!",
+  "sign_up_in_just_a_few_simple": "Đăng ký chỉ trong vài bước đơn giản và bắt đầu tận hưởng những điều tuyệt vời mà chúng tôi mang lại.",
+  "enter_first_name": "Nhập tên...",
+  "enter_last_name": "Nhập họ...",
+  "enter_email": "Nhập email...",
+  "enter_password": "Nhập mật khẩu...",
+  "enter_confirm_password": "Nhập xác nhận mật khẩu...",
+  "remember_me": "Ghi nhớ mật khẩu",
+  "forgot_password": "Quên mật khẩu?",
+  "get_start_with_us": "Bắt đầu với chúng tôi!",
+  "sign_in": "Đăng nhập.",
+  "you_have_already_an_account": "Bạn đã có tài khoản!",
+  "english": "Tiếng Anh",
+  "vietnamese": "Tiếng Việt",
+  "this_field_is_required": "Trường này là bắt buộc!",
+  "please_enter_a_valid_email": "Vui lòng nhập một email hợp lệ!",
+  "invalid_pattern": "Mẫu không hợp lệ!",
+  "password_pattern": "Mật khẩu phải chứa ít nhất một chữ cái viết hoa, một chữ cái viết thường, một con số và một ký tự đặc biệt!",
+  "confirm_password_pattern": "Mật khẩu xác nhận không khớp!",
+  "maximum_length_is_character": "Chiều dài tối đa là {{ number }} ký tự",
+  "minimum_length_is_character": "Chiều dài tối thiểu là {{ number }} ký tự"
+}

@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  height: 100vh;
+  background-color: var(--background-secondary);
+  overflow-y: auto;
+}
+
+.sign-up-footer {
+  &__title {
+    margin-right: 4px;
+    font-size: 13px;
+    color: var(--secondary-color);
+  }
+
+  &__link {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+}
+
+.sign-up-form {
+  &__action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  &__link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--secondary-color);
+  }
+}

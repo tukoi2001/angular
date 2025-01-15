@@ -1,0 +1,28 @@
+<div class="switch-language">
+  <div
+    class="switch-language-trigger"
+    nz-dropdown
+    nzTrigger="click"
+    [nzDropdownMenu]="menu"
+    nzPlacement="bottomLeft"
+  >
+    <img class="switch-language-trigger__flag" [src]="flagUrl" alt="flag" />
+    <p class="switch-language-trigger__lang">{{ languageLabel | translate }}</p>
+  </div>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu>
+      <li nz-menu-item class="switch-language-item" (click)="onSwitchLanguage('en')">
+        <img class="switch-language-item__flag" src="/assets/images/england.png" alt="english" />
+        <p class="switch-language-item__lang">{{ 'english' | translate }}</p>
+      </li>
+      <li nz-menu-item class="switch-language-item" (click)="onSwitchLanguage('vi')">
+        <img
+          class="switch-language-item__flag"
+          src="/assets/images/vietnamese.png"
+          alt="vietnamese"
+        />
+        <p class="switch-language-item__lang">{{ 'vietnamese' | translate }}</p>
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+</div>

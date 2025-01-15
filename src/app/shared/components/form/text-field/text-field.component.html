@@ -1,0 +1,47 @@
+<nz-form-item class="text-field">
+  <nz-form-control class="text-field__error" [nzErrorTip]="errorTpl">
+    @if (type === 'textarea') {
+      <textarea
+        [id]="id"
+        nz-input
+        [placeholder]="placeholder | translate"
+        [formControl]="control!"
+        [rows]="rows"
+        [nzAutosize]="autosize"
+        (blur)="onTouched()"
+      ></textarea>
+    } @else {
+      <nz-input-group
+        [nzPrefixIcon]="icon"
+        [nzPrefix]="prefix"
+        [nzSize]="size"
+        [nzSuffix]="type === 'password' ? passwordSuffix : suffix"
+      >
+        <input
+          [id]="id"
+          nz-input
+          [placeholder]="placeholder | translate"
+          [formControl]="control!"
+          [type]="isShowPassword() ? 'text' : type"
+          (blur)="onTouched()"
+          autocomplete="off"
+        />
+      </nz-input-group>
+    }
+
+    <!-- Password Toggle Template -->
+    <ng-template #passwordSuffix>
+      <span
+        nz-icon
+        class="text-field__password-icon"
+        [nzType]="isShowPassword() ? 'eye' : 'eye-invisible'"
+        (click)="togglePasswordVisibility()"
+      ></span>
+    </ng-template>
+
+    <!-- Error Template -->
+    <ng-template #errorTpl let-control>
+      {{ getErrorMessage() | translate }}
+    </ng-template>
+  </nz-form-control>
+</nz-form-item>

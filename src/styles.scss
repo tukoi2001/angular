@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@use './styles/variables.scss';
+@use './styles/reset.scss';
+@use './styles/override.scss';
+
+:root {
+  --primary-color: #{variables.$primary-color};
+  --secondary-color: #{variables.$secondary-color};
+  --tertiary-color: #{variables.$tertiary-color};
+  --background-primary: #{variables.$background-primary};
+  --background-secondary: #{variables.$background-secondary};
+  --box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.dark-theme {
+  --primary-color: #{variables.$dark-primary-color};
+  --secondary-color: #{variables.$dark-secondary-color};
+  --tertiary-color: #{variables.$dark-tertiary-color};
+  --background-primary: #{variables.$dark-background-primary};
+  --background-secondary: #{variables.$dark-background-secondary};
+  --box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 5px 0px, rgba(255, 255, 255, 0.5) 0px 0px 1px 0px;
+}

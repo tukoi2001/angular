@@ -1,0 +1,16 @@
+.text-field {
+  &__password-icon {
+    cursor: pointer;
+  }
+
+  .ant-input::placeholder {
+    font-size: 14px;
+  }
+
+  ::ng-deep {
+    .ant-form-item-explain-error {
+      font-size: 12px;
+      padding-top: 4px;
+    }
+  }
+}

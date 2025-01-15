@@ -1,0 +1,80 @@
+/* Box Sizing: Border-box */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove margin and padding */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+p,
+figure,
+blockquote,
+dl,
+dd,
+input,
+textarea,
+button {
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove default list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Set a consistent font size */
+html {
+  font-size: 16px;
+}
+
+/* Ensure images are not larger than their container */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Remove the default blue border on inputs when focused */
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: none;
+}
+
+/* Ensure links are not underlined by default */
+a {
+  text-decoration: none;
+}
+
+/* Style for blockquotes */
+blockquote {
+  quotes: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Set default font family */
+body {
+  font-family:
+    Avenir,
+    Helvetica Neue,
+    Arial,
+    Helvetica,
+    sans-serif;
+  line-height: 1.5;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}

@@ -16,7 +16,19 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022"
+    "module": "ES2022",
+    "baseUrl": "./src",
+    "paths": {
+      "@containers/*": ["app/containers/*"],
+      "@constants/*": ["app/constants/*"],
+      "@environments/*": ["environments/*"],
+      "@layouts/*": ["app/layouts/*"],
+      "@interceptors/*": ["app/interceptors/*"],
+      "@models/*": ["app/models/*"],
+      "@shared/*": ["app/shared/*"],
+      "@services/*": ["app/services/*"],
+      "@validators/*": ["app/validators/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

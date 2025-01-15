@@ -1,0 +1,57 @@
+<auth-layout title="get_started" subtitle="sign_up_in_just_a_few_simple">
+  <form nz-form [formGroup]="form" class="sign-up-form" (ngSubmit)="onSubmit()">
+    <text-field
+      id="firstName"
+      [control]="getControl('firstName')"
+      icon="user"
+      type="text"
+      placeholder="enter_first_name"
+    />
+
+    <text-field
+      id="lastName"
+      [control]="getControl('lastName')"
+      icon="user"
+      type="text"
+      placeholder="enter_last_name"
+    />
+
+    <text-field
+      id="email"
+      [control]="getControl('email')"
+      icon="mail"
+      type="text"
+      placeholder="enter_email"
+    />
+
+    <text-field
+      id="password"
+      [control]="getControl('password')"
+      icon="lock"
+      type="password"
+      placeholder="enter_password"
+    />
+
+    <text-field
+      id="confirmPassword"
+      [control]="getControl('confirmPassword')"
+      icon="lock"
+      type="password"
+      placeholder="enter_confirm_password"
+    />
+
+    <div class="sign-up-form__action">
+      <checkbox formControlName="remember">{{ 'remember_me' | translate }}</checkbox>
+      <a routerLink="/sign-in" class="sign-up-form__link">{{ 'forgot_password' | translate }}</a>
+    </div>
+
+    <app-button shape="round" type="primary" htmlType="submit" [isFullWidth]="true">
+      {{ 'get_start_with_us' | translate }}
+    </app-button>
+  </form>
+
+  <div footer>
+    <span class="sign-up-footer__title">{{ 'you_have_already_an_account' | translate }}</span>
+    <a routerLink="/sign-in" class="sign-up-footer__link">{{ 'sign_in' | translate }}</a>
+  </div>
+</auth-layout>

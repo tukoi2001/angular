@@ -1,0 +1,9 @@
+<switch
+  [ngModel]="value"
+  [checkedChildren]="checkedTemplate"
+  [unCheckedChildren]="unCheckedTemplate"
+  (onChangeValue)="onChangeValue($event)"
+/>
+
+<ng-template #checkedTemplate><nz-icon nzType="moon" /></ng-template>
+<ng-template #unCheckedTemplate><nz-icon nzType="sun" /></ng-template>

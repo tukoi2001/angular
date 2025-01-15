@@ -1,0 +1,23 @@
+{
+  "get_started": "Get started!",
+  "sign_up_in_just_a_few_simple": "Sign up in just a few simple steps and start enjoying the amazing things we offer.",
+  "enter_first_name": "Enter first name...",
+  "enter_last_name": "Enter last name...",
+  "enter_email": "Enter email...",
+  "enter_password": "Enter password...",
+  "enter_confirm_password": "Enter confirm password...",
+  "remember_me": "Remember me",
+  "forgot_password": "Forgot password?",
+  "get_start_with_us": "Get start with us!",
+  "sign_in": "Sign In.",
+  "you_have_already_an_account": "You have already an account!",
+  "english": "English",
+  "vietnamese": "Vietnamese",
+  "this_field_is_required": "This field is required!",
+  "please_enter_a_valid_email": "Please enter a valid email!",
+  "invalid_pattern": "Invalid pattern!",
+  "password_pattern": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character!",
+  "confirm_password_pattern": "Confirm password doesn't match!",
+  "maximum_length_is_character": "Maximum length is {{ number }} character",
+  "minimum_length_is_character": "Minimum length is {{ number }} character"
+}

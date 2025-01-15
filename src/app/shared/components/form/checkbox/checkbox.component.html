@@ -1,0 +1,10 @@
+<label
+  nz-checkbox
+  [ngModel]="value"
+  (ngModelChange)="onValueChange($event)"
+  [nzDisabled]="disabled"
+  [nzIndeterminate]="indeterminate"
+  [nzAutoFocus]="autoFocus"
+>
+  <ng-content></ng-content>
+</label>
