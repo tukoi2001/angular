@@ -4,9 +4,7 @@ import { environment } from '@environments/environment.dev';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class RequestService {
   private readonly apiUrl = environment.API_URL;
 
@@ -54,9 +52,9 @@ export class RequestService {
    * @param data - Request body
    * @param params - Query parameters
    */
-  post<T>(
+  post<T, D = any>(
     endpoint: string,
-    data: any,
+    data: D,
     params?:
       | HttpParams
       | { [param: string]: string | number | boolean | readonly (string | number | boolean)[] },

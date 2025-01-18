@@ -8,66 +8,98 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
+import { catchError, filter, switchMap, take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { CookieService } from '@services/cookie.service';
+import { AuthService } from '@services/auth.service';
+import { StatusCode } from '@enums/app.enum';
+import { ToastService } from '@services/toast.service';
+import type { ITokenResponse } from '../models/auth.model';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
   constructor(
     private readonly router: Router,
+    private readonly authService: AuthService,
     private readonly cookieService: CookieService,
+    private readonly toastService: ToastService,
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = this.cookieService.getAccessToken();
+    request = this.addAuthenticationToken(request);
 
-    let headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Accept', 'application/json')
-      .set('X-Requested-With', 'XMLHttpRequest')
-      .set('Cache-Control', 'no-cache')
-      .set('Pragma', 'no-cache')
-      .set('Expires', '0');
-
-    // Add correlation ID for request tracking
-    headers = headers.set('X-Correlation-ID', this.generateCorrelationId());
-
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
-    }
-
-    // Clone the request with the new headers
-    const modifiedRequest = request.clone({ headers });
-
-    return next.handle(modifiedRequest).pipe(
+    return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        const status = error.status;
-        switch (status) {
-          case 401:
-            localStorage.removeItem('token');
-            this.router.navigate(['/login']);
+        switch (error.status) {
+          case StatusCode.Unauthorized:
+            this.authService.handleUnauthorized();
             break;
-          case 403:
+          case StatusCode.Forbidden:
             this.router.navigate(['/forbidden']);
             break;
-          case 404:
+          case StatusCode.NotFound:
             this.router.navigate(['/not-found']);
             break;
-          case 500:
+          case StatusCode.AccessTokenExpired:
+            return this.handleRefreshToken(request, next);
+          case StatusCode.InternalServerError:
+          case StatusCode.TooManyRequest:
           default:
+            this.toastService.showError(error.message);
             break;
         }
         return throwError(() => error);
       }),
-      finalize(() => {
-        // Perform any cleanup or logging if needed after the request
-      }),
     );
   }
 
-  private generateCorrelationId(): string {
-    // Generate a unique correlation ID for request tracking
-    return `${Date.now()}-${Math.random().toString(36).substring(2, 15)}`;
+  private createHeadersWithAuth(token: string): HttpHeaders {
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    });
+  }
+
+  private addAuthenticationToken(request: HttpRequest<unknown>): HttpRequest<unknown> {
+    const token = this.cookieService.getAccessToken();
+
+    if (!Boolean(token)) {
+      return request;
+    }
+
+    const headers = this.createHeadersWithAuth(token);
+    return request.clone({ headers });
+  }
+
+  private handleRefreshToken(
+    request: HttpRequest<unknown>,
+    next: HttpHandler,
+  ): Observable<HttpEvent<unknown>> {
+    if (!this.authService.isRefreshingToken()) {
+      this.authService.setRefreshingToken(true);
+      this.authService.getRefreshTokenSubject().next(null);
+
+      return this.authService.refreshToken().pipe(
+        switchMap(({ accessToken, refreshToken }: Partial<ITokenResponse>) => {
+          this.authService.setRefreshingToken(false);
+          this.cookieService.setAccessToken(accessToken as string);
+          this.cookieService.setRefreshToken(refreshToken as string);
+          this.authService.getRefreshTokenSubject().next(accessToken as string);
+          return next.handle(this.addAuthenticationToken(request));
+        }),
+        catchError(error => {
+          this.authService.setRefreshingToken(false);
+          this.authService.handleUnauthorized();
+          return throwError(() => error);
+        }),
+      );
+    }
+
+    return this.authService.getRefreshTokenSubject().pipe(
+      filter(token => token !== null),
+      take(1),
+      switchMap(token => next.handle(this.addAuthenticationToken(request))),
+    );
   }
 }

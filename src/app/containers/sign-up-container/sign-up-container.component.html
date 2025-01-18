@@ -40,11 +40,6 @@
       placeholder="enter_confirm_password"
     />
 
-    <div class="sign-up-form__action">
-      <checkbox formControlName="remember">{{ 'remember_me' | translate }}</checkbox>
-      <a routerLink="/sign-in" class="sign-up-form__link">{{ 'forgot_password' | translate }}</a>
-    </div>
-
     <app-button shape="round" type="primary" htmlType="submit" [isFullWidth]="true">
       {{ 'get_start_with_us' | translate }}
     </app-button>

@@ -22,11 +22,14 @@
       "@containers/*": ["app/containers/*"],
       "@constants/*": ["app/constants/*"],
       "@environments/*": ["environments/*"],
+      "@enums/*": ["app/enums/*"],
+      "@guards/*": ["app/guards/*"],
       "@layouts/*": ["app/layouts/*"],
       "@interceptors/*": ["app/interceptors/*"],
       "@models/*": ["app/models/*"],
       "@shared/*": ["app/shared/*"],
       "@services/*": ["app/services/*"],
+      "@stores/*": ["app/stores/*"],
       "@validators/*": ["app/validators/*"]
     }
   },

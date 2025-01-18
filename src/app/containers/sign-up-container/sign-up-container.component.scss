@@ -18,18 +18,3 @@
     color: var(--primary-color);
   }
 }
-
-.sign-up-form {
-  &__action {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-  }
-
-  &__link {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--secondary-color);
-  }
-}

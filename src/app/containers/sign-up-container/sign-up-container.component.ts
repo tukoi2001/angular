@@ -19,8 +19,7 @@ import { matchPasswordsValidator } from '@validators/password.validator';
 import { AuthLayoutComponent } from '@layouts/auth-layout/auth-layout.component';
 import { TextFieldComponent } from '@shared/components/form/text-field/text-field.component';
 import { AppButtonComponent } from '@shared/components/form/app-button/app-button.component';
-import { CheckboxComponent } from '@shared/components/form/checkbox/checkbox.component';
-import type { IAuthSignUpRequest, ISignUpFormBuilder } from '@models/auth.model';
+import type { ISignUpRequest, ISignUpFormBuilder } from '@models/auth.model';
 
 @Component({
   selector: 'sign-up-container',
@@ -28,7 +27,6 @@ import type { IAuthSignUpRequest, ISignUpFormBuilder } from '@models/auth.model'
     AuthLayoutComponent,
     TextFieldComponent,
     AppButtonComponent,
-    CheckboxComponent,
     ReactiveFormsModule,
     RouterLink,
     NzFormModule,
@@ -55,7 +53,6 @@ export class SignUpContainer implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.pattern(REGEX.password)]],
         confirmPassword: ['', [Validators.required]],
-        remember: [false],
       },
       { validators: matchPasswordsValidator('password', 'confirmPassword') },
     );
@@ -67,7 +64,7 @@ export class SignUpContainer implements OnInit {
 
   onSubmit(): void {
     if (this.form.valid) {
-      const formData: IAuthSignUpRequest = this.form.value as IAuthSignUpRequest;
+      const formData: ISignUpRequest = this.form.value as ISignUpRequest;
       console.log(formData);
     } else {
       Object.values(this.form.controls).forEach(control => {
