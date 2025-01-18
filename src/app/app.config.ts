@@ -27,12 +27,20 @@ import { provideToastr } from 'ngx-toastr';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { DEFAULT_LANGUAGE } from '@constants/language.constants';
 import { HttpRequestInterceptor } from '@interceptors/global.interceptor';
+import { AuthEffects } from './store/auth/auth.effects';
+import { authReducer } from './store/auth/auth.reducer';
 
 registerLocaleData(en);
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
+
+const appReducers = {
+  feature_auth: authReducer,
+};
+
+const appEffects = [AuthEffects];
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -43,8 +51,8 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(FormsModule),
     provideAnimationsAsync(),
     provideHttpClient(),
-    provideStore(),
-    provideEffects(),
+    provideStore(appReducers),
+    provideEffects(appEffects),
     provideToastr(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideHttpClient(withInterceptorsFromDi()),
